@@ -62,8 +62,8 @@ source "virtualbox-iso" "virtualbox" {
   guest_os_type           = "Debian_64"
   headless                = true
   http_directory          = "../http"
-  iso_checksum            = "sha256:${var.iso_checksum}"
-  iso_url                 = "${var.iso_url}"
+  iso_checksum            = "sha256:${local.os_sha256}"
+  iso_url                 = "https://cdimage.debian.org/cdimage/archive/${local.os_release}/amd64/iso-cd/debian-${local.os_release}-amd64-netinst.iso"
   output_directory        = "output/base-virtualbox"
   shutdown_command        = "echo '/sbin/halt -h -p' > shutdown.sh; echo 'vagrant'|sudo -S bash 'shutdown.sh'"
   ssh_password            = "vagrant"
