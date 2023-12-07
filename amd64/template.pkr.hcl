@@ -68,14 +68,9 @@ source "virtualbox-iso" "virtualbox" {
   ssh_timeout             = "10000s"
   ssh_username            = "vagrant"
   vboxmanage              = [
-    [
-      "modifyvm",
-      "{{ .Name }}", "--memory", "4096",
-    ],
-    [
-      "modifyvm",
-      "{{.Name}}", "--cpus", "1",
-    ]
+    [ "modifyvm", "{{ .Name }}", "--memory",                  "4096" ],
+    [ "modifyvm", "{{.Name}}",   "--cpus",                    "1"    ],
+    [ "modifyvm", "{{.Name}}",   "--nat-localhostreachable1", "on"   ],
   ]
   virtualbox_version_file = ".vbox_version"
 }
