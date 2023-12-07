@@ -35,9 +35,9 @@ variable "os_hashes" {
   # type    = map(string)
   default = {
     # "stretch"   = "ea321c9de60a6fe9dfaf438b8e16f1945d6d2239e9f0d3cfe6872d4280eba10c",
-    "buster"    = "a20a5437e243186ac8d678202cf55a253e8d37df2b187da885796d5071ba829f",
-    "bullseye"  = "64787b34b796c6afc5b2526a0aa1b3d00d84aa5f30efe53dbe92d94ff53d6e40",
-    "bookworm"  = "b58e02fe14a52c1dfdacc0ccd6bc9b4edf385c7e8cea1871a3b0fccb6438700b",
+    "buster"    = "75aa64071060402a594dcf1e14afd669ca0f8bf757b56d4c9c1a31b8f7c8f931",
+    "bullseye"  = "d7a74813a734083df30c8d35784926deaa36bc41e5c0766388e9f591ab056b72",
+    "bookworm"  = "9f181ae12b25840a508786b1756c6352a0e58484998669288c4eec2ab16b8559",
   }
 }
 
