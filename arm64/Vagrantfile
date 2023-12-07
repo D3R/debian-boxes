@@ -1,0 +1,26 @@
+os_codenames = [
+	"stretch",
+	"buster",
+	"bullseye",
+	"bookworm"
+]
+
+Vagrant.configure("2") do |config|
+
+	os_codenames.each do |codename|
+		config.vm.define "#{codename}-arm64" do |machine|
+			machine.vm.box = "./output/#{codename}-arm64.box"
+			machine.vm.provider "parallels" do |prl|
+				prl.name = "#{codename}-arm64"
+				prl.update_guest_tools = false
+				prl.linked_clone = false
+				prl.customize [ "set", "#{codename}-arm64", "--cpus", 1 ]
+				prl.customize [ "set", "#{codename}-arm64", "--memsize", 1024 ]
+				prl.customize [ "set", "#{codename}-arm64", "--distribution", "debian" ]
+				prl.customize [ "set", "#{codename}-arm64", "--time-sync", "on" ]
+				prl.customize [ "set", "#{codename}-arm64", "--sync-vm-hostname", "on" ]
+			end
+		end
+	end
+
+end

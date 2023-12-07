@@ -81,14 +81,14 @@ build {
   provisioner "shell" {
     execute_command = local.shell_execute_command
     scripts = [
-      "../../scripts/setup.sh",
-      "../../scripts/config.sh",
+      "../scripts/setup.sh",
+      "../scripts/config.sh",
     ]
   }
   provisioner "shell" {
     execute_command = local.shell_execute_command
     scripts = [
-      "../../scripts/parallels/tools.sh",
+      "../scripts/parallels/tools.sh",
     ]
     only = [
       "parallels-iso.parallels"
@@ -97,10 +97,10 @@ build {
   provisioner "shell" {
     execute_command = local.shell_execute_command
     scripts = [
-      "../../scripts/vagrant.sh",
-      "../../scripts/cleanup.sh",
-      "../../scripts/base_version.sh",
-      "../../scripts/zerodisk.sh"
+      "../scripts/vagrant.sh",
+      "../scripts/cleanup.sh",
+      "../scripts/base_version.sh",
+      "../scripts/zerodisk.sh"
     ]
   }
 

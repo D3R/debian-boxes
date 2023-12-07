@@ -1,0 +1,68 @@
+# Default target
+.PHONY: default
+
+# Default variable values
+# BOX_VERSION has no default and must be set explicitly
+OS_CODENAME := buster
+BOX_CHANNEL := stable
+
+# Alias targets
+default: build
+all: prepare clean build
+
+# Prepare a build, initialising the packer template
+prepare:
+	/usr/bin/time /usr/bin/env packer init template.pkr.hcl
+
+# Clean up old artifacts
+clean-all:
+	rm -fR output
+
+clean:
+	test -n "$(OS_CODENAME)"
+	rm -f output/$(OS_CODENAME).*
+
+build: export PYTHONPATH=/Library/Frameworks/ParallelsVirtualizationSDK.framework/Versions/11/Libraries/Python/3.7
+build: prepare clean-all
+build:
+	test -n "$(OS_CODENAME)"
+	test -n "$(BOX_VERSION)"
+	/usr/bin/time /usr/bin/env packer build \
+		-force \
+		-var "os_codename=${OS_CODENAME}" \
+		-var "box_version=${BOX_VERSION}" \
+		template.pkr.hcl
+
+upload:
+	test -n "$(OS_CODENAME)"
+	test -n "$(BOX_VERSION)"
+	test -n "$(BOX_CHANNEL)"
+	aws s3 cp \
+		--acl public-read \
+		output/${OS_CODENAME}-arm64.box \
+		s3://d3r-vagrant-stack/${BOX_CHANNEL}/${OS_CODENAME}-arm64-${BOX_VERSION}.box
+	cat output/${OS_CODENAME}-arm64.box.checksum
+	echo "IMAGE URL : https://d3r-vagrant-stack.s3.eu-west-2.amazonaws.com/${BOX_CHANNEL}/${OS_CODENAME}-arm64-${BOX_VERSION}.box"
+
+# register:
+# 	test -n "$(VC_TOKEN)"
+# 	test -n "$(OS_CODENAME)"
+# 	test -n "$(BOX_VERSION)"
+# 	test -n "$(BOX_CHANNEL)"
+# 	JSON_PAYLOAD = \{ "provider": \{ "checksum": "${shell awk '{print $$1}' output/${OS_CODENAME}-arm64.box.checksum}", "checksum_type": "sha256", "name": "parallels", "url": "https://d3r-vagrant-stack.s3.eu-west-2.amazonaws.com/${BOX_CHANNEL}/${OS_CODENAME}-arm64-${BOX_VERSION}.box", "architecture": "arm64", "default_architecture": true \}\}
+# 	echo $(OS_CODENAME)
+# 	# echo "${JSON_PAYLOAD}"
+# 	# curl \
+# 	# 	--request POST \
+# 	# 	--header "Content-Type: application/json" \
+# 	# 	--header "Authorization: Bearer ${VC_TOKEN}" \
+# 	# 	--data '{ \
+# 	# 		"provider": { \
+# 	# 			"checksum": "a59e7332e8bbe896f11f478fc61fa8a6", \
+# 	# 			"checksum_type": "md5", \
+# 	# 			"name": "virtualbox", \
+# 	# 			"url": "https://example.com/virtualbox-1.2.3.box", \
+# 	# 			"architecture": "amd64", \
+# 	# 			"default_architecture": true \
+# 	# 		} \
+# 	# 	}'
