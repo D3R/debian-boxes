@@ -28,7 +28,7 @@ upload:
 	test -n "$(BOX_CHANNEL)"
 	aws s3 cp \
 		--acl public-read \
-		output/${OS_CODENAME}-arm64.box \
-		s3://d3r-vagrant-stack/${BOX_CHANNEL}/${OS_CODENAME}-arm64-${BOX_VERSION}.box
-	shasum -a 256 output/${OS_CODENAME}-arm64.box
-	echo "IMAGE URL : https://d3r-vagrant-stack.s3.eu-west-2.amazonaws.com/${BOX_CHANNEL}/${OS_CODENAME}-arm64-${BOX_VERSION}.box"
+		output/base-parallels-arm64.box \
+		s3://d3r-vagrant-stack/${BOX_CHANNEL}/base-parallels-arm64-${BOX_VERSION}.box
+	shasum -a 256 output/base-parallels-arm64.box
+	echo "IMAGE URL : https://d3r-vagrant-stack.s3.eu-west-2.amazonaws.com/${BOX_CHANNEL}/base-parallels-arm64-${BOX_VERSION}.box"

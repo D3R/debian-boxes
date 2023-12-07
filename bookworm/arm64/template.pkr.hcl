@@ -5,38 +5,26 @@ packer {
       version = ">= 1.0.1"
       source  = "github.com/hashicorp/parallels"
     }
-    vagrant = {
-      source  = "github.com/hashicorp/vagrant"
-      version = "~> 1"
-    }
   }
-}
-
-variable "os_codename" {
-  type    = string
-  default = "bullseye"
 }
 variable "os_release" {
   type    = string
-  default = "11.8.0"
+  default = "bookworm"
 }
-variable "os_sha256" {
-  type    = string
-  default = "64787b34b796c6afc5b2526a0aa1b3d00d84aa5f30efe53dbe92d94ff53d6e40"
-}
+
 variable "box_version" {
   type    = string
 }
 
 locals {
-  hostname = "${var.os_codename}-arm64"
+  vm_name               = "${var.os_release}"
   shell_execute_command = "echo 'vagrant'|sudo -S bash '{{.Path}}' '${var.box_version}'"
 }
 
 source "parallels-iso" "parallels" {
   boot_command = [
     "c",
-    "linux /install.a64/vmlinuz auto=true priority=critical hostname=${local.hostname} url=http://{{ .HTTPIP }}:{{ .HTTPPort }}/preseed.cfg --- quiet",
+    "linux /install.a64/vmlinuz auto=true priority=critical url=http://{{ .HTTPIP }}:{{ .HTTPPort }}/preseed.cfg --- quiet",
     "<enter>",
     "initrd /install.a64/initrd.gz",
     "<enter>",
@@ -48,10 +36,10 @@ source "parallels-iso" "parallels" {
   disk_size                  = 10000
   guest_os_type              = "debian"
   http_directory             = "../http"
-  iso_checksum               = "sha256:${var.os_sha256}"
-  iso_url                    = "https://cdimage.debian.org/cdimage/archive/${var.os_release}/arm64/iso-cd/debian-${var.os_release}-arm64-netinst.iso"
+  iso_checksum               = "sha256:b58e02fe14a52c1dfdacc0ccd6bc9b4edf385c7e8cea1871a3b0fccb6438700b"
+  iso_url                    = "https://cdimage.debian.org/cdimage/archive/12.1.0/arm64/iso-cd/debian-12.1.0-arm64-netinst.iso"
   memory                     = 4096
-  output_directory           = "output/${var.os_release}-arm64"
+  output_directory           = "output/parallels-arm64"
   parallels_tools_flavor     = "lin-arm"
   parallels_tools_mode       = "upload"
   parallels_tools_guest_path = "/home/vagrant/prl-tools-lin.iso"
@@ -96,11 +84,11 @@ build {
   post-processors {
     post-processor "vagrant" {
       compression_level = 9
-      output            = "output/${var.os_release}-arm64.box"
+      output            = "output/{{ .Provider }}-arm64.box"
     }
     post-processor "checksum" {
       checksum_types = ["sha256"]
-      output         = "output/${var.os_release}-arm64.box.checksum"
+      output         = "output/parallels-arm64.box.checksum"
       only = [
         "parallels-iso.parallels"
       ]
