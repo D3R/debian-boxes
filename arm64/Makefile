@@ -44,6 +44,7 @@ upload:
 	cat output/${OS_CODENAME}-arm64.box.checksum
 	echo "IMAGE URL : https://d3r-vagrant-stack.s3.eu-west-2.amazonaws.com/${BOX_CHANNEL}/${OS_CODENAME}-arm64-${BOX_VERSION}.box"
 
+# See https://developer.hashicorp.com/vagrant/vagrant-cloud/api/v2#providers
 # register:
 # 	test -n "$(VC_TOKEN)"
 # 	test -n "$(OS_CODENAME)"
