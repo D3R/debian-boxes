@@ -52,7 +52,7 @@ source "parallels-iso" "parallels" {
     "initrd /install.a64/initrd.gz",
     "<enter>",
     "boot",
-    "<enter><wait>"
+    "<enter><wait>",
   ]
   boot_wait                  = "20s"
   cpus                       = 2
