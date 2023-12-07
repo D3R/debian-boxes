@@ -51,9 +51,7 @@ locals {
 source "virtualbox-iso" "virtualbox" {
   boot_command            = [
     "<esc><wait>",
-    "auto=true priority=critical hostname=${local.hostname} url=http://{{ .HTTPIP }}:{{ .HTTPPort }}/preseed.cfg --- quiet",
-    "<enter>",
-    "boot",
+    "auto priority=critical hostname=${local.hostname} url=http://{{ .HTTPIP }}:{{ .HTTPPort }}/preseed.cfg --- quiet",
     "<enter><wait>",
   ]
   boot_wait               = "20s"
