@@ -8,10 +8,11 @@ os_codenames = [
 Vagrant.configure("2") do |config|
 
 	os_codenames.each do |codename|
-		config.vm.define "#{codename}-arm64" do |machine|
-			machine.vm.box = "./output/#{codename}-arm64.box"
+		config.vm.define "#{codename}" do |machine|
+			#machine.vm.box = "./output/#{codename}-arm64.box"
+			machine.vm.box = "d3r/#{codename}"
 			machine.vm.provider "parallels" do |prl|
-				prl.name = "#{codename}-arm64"
+				prl.name = "#{codename}"
 				prl.update_guest_tools = false
 				prl.linked_clone = false
 				prl.customize [ "set", "#{codename}-arm64", "--cpus", 1 ]
