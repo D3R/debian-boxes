@@ -38,10 +38,10 @@ upload:
 	test -n "$(BOX_CHANNEL)"
 	aws s3 cp \
 		--acl public-read \
-		output/${OS_CODENAME}-arm64.box \
-		s3://d3r-vagrant-stack/${BOX_CHANNEL}/${OS_CODENAME}-arm64-${BOX_VERSION}.box
-	cat output/${OS_CODENAME}-arm64.box.checksum
-	echo "IMAGE URL : https://d3r-vagrant-stack.s3.eu-west-2.amazonaws.com/${BOX_CHANNEL}/${OS_CODENAME}-arm64-${BOX_VERSION}.box"
+		output/${OS_CODENAME}-amd64.box \
+		s3://d3r-vagrant-stack/${BOX_CHANNEL}/${OS_CODENAME}-amd64-${BOX_VERSION}.box
+	cat output/${OS_CODENAME}-amd64.box.checksum
+	echo "IMAGE URL : https://d3r-vagrant-stack.s3.eu-west-2.amazonaws.com/${BOX_CHANNEL}/${OS_CODENAME}-amd64-${BOX_VERSION}.box"
 
 # See https://developer.hashicorp.com/vagrant/vagrant-cloud/api/v2#providers
 # register:
@@ -49,7 +49,7 @@ upload:
 # 	test -n "$(OS_CODENAME)"
 # 	test -n "$(BOX_VERSION)"
 # 	test -n "$(BOX_CHANNEL)"
-# 	JSON_PAYLOAD = \{ "provider": \{ "checksum": "${shell awk '{print $$1}' output/${OS_CODENAME}-arm64.box.checksum}", "checksum_type": "sha256", "name": "parallels", "url": "https://d3r-vagrant-stack.s3.eu-west-2.amazonaws.com/${BOX_CHANNEL}/${OS_CODENAME}-arm64-${BOX_VERSION}.box", "architecture": "arm64", "default_architecture": true \}\}
+# 	JSON_PAYLOAD = \{ "provider": \{ "checksum": "${shell awk '{print $$1}' output/${OS_CODENAME}-amd64.box.checksum}", "checksum_type": "sha256", "name": "parallels", "url": "https://d3r-vagrant-stack.s3.eu-west-2.amazonaws.com/${BOX_CHANNEL}/${OS_CODENAME}-amd64-${BOX_VERSION}.box", "architecture": "amd64", "default_architecture": true \}\}
 # 	echo $(OS_CODENAME)
 # 	# echo "${JSON_PAYLOAD}"
 # 	# curl \
