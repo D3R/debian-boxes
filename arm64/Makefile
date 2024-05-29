@@ -3,8 +3,8 @@
 
 # Default variable values
 # BOX_VERSION has no default and must be set explicitly
-OS_CODENAME := buster
-BOX_CHANNEL := stable
+OS_CODENAME ?= buster
+BOX_CHANNEL ?= stable
 
 # Alias targets
 default: build
