@@ -13,6 +13,6 @@ Distribution support is shown in the table below.
 | - | - |
 | Jessie | Not supported |
 | Stretch | Not supported |
-| Buster | Supported |
+| Buster | Not supported |
 | Bullseye | Supported |
-| Bookworm | Planned |
+| Bookworm | Testing |

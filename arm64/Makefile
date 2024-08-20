@@ -3,7 +3,7 @@
 
 # Default variable values
 # BOX_VERSION has no default and must be set explicitly
-OS_CODENAME ?= buster
+OS_CODENAME ?= bullseye
 BOX_CHANNEL ?= stable
 
 # Alias targets

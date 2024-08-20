@@ -146,6 +146,7 @@ find /var/lib/apt/lists -type f -exec rm -f {} \;
 
 echo "==> Resetting machine id"
 truncate -s 0 /etc/machine-id
+truncate -s 0 /var/lib/dbus/machine-id
 
 echo "==> Adding box information"
 echo "${box_version} ${datestamp}" > /etc/box_version

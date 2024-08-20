@@ -25,19 +25,17 @@ variable "os_codename" {
 variable "os_releases" {
   # type    = map(string)
   default = {
-    # "stretch"   = "9.13.0",
-    "buster"    = "10.13.0",
-    "bullseye"  = "11.8.0",
-    "bookworm"  = "12.1.0",
+    # "buster"    = "10.13.0",
+    "bullseye"  = "11.10.0",
+    "bookworm"  = "12.5.0",
   }
 }
 variable "os_hashes" {
   # type    = map(string)
   default = {
-    # "stretch"   = "ea321c9de60a6fe9dfaf438b8e16f1945d6d2239e9f0d3cfe6872d4280eba10c",
-    "buster"    = "75aa64071060402a594dcf1e14afd669ca0f8bf757b56d4c9c1a31b8f7c8f931",
-    "bullseye"  = "d7a74813a734083df30c8d35784926deaa36bc41e5c0766388e9f591ab056b72",
-    "bookworm"  = "9f181ae12b25840a508786b1756c6352a0e58484998669288c4eec2ab16b8559",
+    # "buster"    = "75aa64071060402a594dcf1e14afd669ca0f8bf757b56d4c9c1a31b8f7c8f931",
+    "bullseye"  = "721ef40ba86c01b555ea85bb4ca7917d28cb65d56e57a0f56af90443f0aec6a3",
+    "bookworm"  = "013f5b44670d81280b5b1bc02455842b250df2f0c6763398feb69af1a805a14f",
   }
 }
 
