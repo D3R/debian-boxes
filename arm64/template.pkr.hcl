@@ -22,16 +22,16 @@ variable "os_releases" {
   # type    = map(string)
   default = {
     # "buster"    = "10.13.0",
-    "bullseye"  = "11.10.0",
-    "bookworm"  = "12.5.0",
+    "bullseye"  = "11.11.0",
+    "bookworm"  = "12.6.0",
   }
 }
 variable "os_hashes" {
   # type    = map(string)
   default = {
     # "buster"    = "a20a5437e243186ac8d678202cf55a253e8d37df2b187da885796d5071ba829f",
-    "bullseye"  = "b7e1ed80aebbf355310b6f1705367567630edbd275de6c5d37bb9fe0cdba379a",
-    "bookworm"  = "1090f86eaf21dd305bb7ec24629f8421218d8cff02e93a1a87554153ab4efa38",
+    "bullseye"  = "c81b6081d5dc5cfac49310b104eb9843252fd3c97cedbcd69ec0388798e7ef7e",
+    "bookworm"  = "38dc21a00ca96dab9754c9c6e8eea55549befc99dbe88d4e3c8af4bd622ab22f",
   }
 }
 
