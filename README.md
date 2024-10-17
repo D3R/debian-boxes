@@ -11,8 +11,7 @@ Distribution support is shown in the table below.
 
 | Debian Codename | Support Status |
 | - | - |
-| Jessie | Not supported |
-| Stretch | Not supported |
 | Buster | Not supported |
 | Bullseye | Supported |
 | Bookworm | Testing |
+| Trixie | Planned |
